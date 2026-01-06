@@ -30,15 +30,22 @@ class ProductCard extends StatelessWidget {
       child: Ink(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: Colors.black12),
+          border: Border.all(color: Colors.black.withOpacity(0.05)),
           color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.03),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Ảnh
             AspectRatio(
-              aspectRatio: 1.08,
+              aspectRatio: 1.15,
               child: ClipRRect(
                 borderRadius: const BorderRadius.vertical(
                   top: Radius.circular(14),
@@ -89,7 +96,7 @@ class ProductCard extends StatelessWidget {
             // Info
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(10, 8, 10, 10),
+                padding: const EdgeInsets.fromLTRB(8, 6, 8, 8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -100,10 +107,11 @@ class ProductCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontWeight: FontWeight.w700,
-                        height: 1.15,
+                        height: 1.1,
+                        fontSize: 13,
                       ),
                     ),
-                    const SizedBox(height: 6),
+                    const SizedBox(height: 4),
 
                     // Price
                     Text(
@@ -111,20 +119,21 @@ class ProductCard extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
-                        fontSize: 16,
+                        fontSize: 15,
                         fontWeight: FontWeight.w800,
+                        color: shopeeOrange,
                       ),
                     ),
-                    const SizedBox(height: 6),
+                    const SizedBox(height: 4),
 
                     // Rating + Stock
                     Row(
                       children: [
-                        const Icon(Icons.star, size: 16, color: Colors.amber),
-                        const SizedBox(width: 4),
+                        const Icon(Icons.star, size: 14, color: Colors.amber),
+                        const SizedBox(width: 2),
                         Text(
                           _ratingText(product.rating),
-                          style: const TextStyle(fontSize: 12),
+                          style: const TextStyle(fontSize: 11),
                         ),
                         const Spacer(),
                         Text(
@@ -132,7 +141,7 @@ class ProductCard extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
-                            fontSize: 12,
+                            fontSize: 11,
                             color: Colors.black54,
                           ),
                         ),

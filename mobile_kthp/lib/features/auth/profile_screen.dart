@@ -227,7 +227,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   constraints: const BoxConstraints(),
                   padding: EdgeInsets.zero,
                 ),
-                const SizedBox(width: 20),
+                const SizedBox(width: 24),
                 Consumer<CartController>(
                   builder: (context, cart, child) {
                     return Stack(
@@ -278,7 +278,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     );
                   },
                 ),
-                const SizedBox(width: 20),
+                const SizedBox(width: 24),
                 Stack(
                   clipBehavior: Clip.none,
                   children: [

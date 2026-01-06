@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'profile_screen.dart';
 import '../products/pages/product_list_page.dart';
 import 'controllers/auth_controller.dart';
+import 'register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -173,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen>
           children: [
             Icon(Icons.error_outline, color: Colors.red),
             SizedBox(width: 8),
-            Text("Đăng nhập thất bại"),
+            Expanded(child: Text("Đăng nhập thất bại")),
           ],
         ),
         content: Text(message),
@@ -221,6 +222,7 @@ class _LoginScreenState extends State<LoginScreen>
                       vertical: 8,
                     ),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         IconButton(
                           icon: const Icon(
@@ -242,35 +244,21 @@ class _LoginScreenState extends State<LoginScreen>
                           },
                         ),
                         const Expanded(
-                          child: Text(
-                            'Đăng Nhập',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 10),
+                            child: Text(
+                              'Đăng Nhập',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                         ),
                         const SizedBox(width: 48), // Balance for back button
                       ],
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  // App Logo / Branding
-                  const Icon(
-                    Icons.shopping_bag_outlined,
-                    color: Colors.white,
-                    size: 60,
-                  ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    'Shop Lite',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1,
                     ),
                   ),
                 ],
@@ -286,7 +274,7 @@ class _LoginScreenState extends State<LoginScreen>
                 scale: _successScale,
                 child: Column(
                   children: [
-                    const SizedBox(height: 100), // Push down to overlap
+                    const SizedBox(height: 80), // Push down to overlap
                     Container(
                       padding: const EdgeInsets.all(24),
                       decoration: BoxDecoration(
@@ -512,10 +500,10 @@ class _LoginScreenState extends State<LoginScreen>
                         ),
                         GestureDetector(
                           onTap: () {
-                            // Navigate to Register (not implemented yet)
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Chức năng Đăng ký chưa có'),
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => const RegisterScreen(),
                               ),
                             );
                           },

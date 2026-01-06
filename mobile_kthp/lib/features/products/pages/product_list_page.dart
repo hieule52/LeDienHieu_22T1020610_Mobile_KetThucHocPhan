@@ -592,7 +592,7 @@ class _ProductListPageState extends State<ProductListPage> {
                     crossAxisCount: crossAxisCount,
                     mainAxisSpacing: 12,
                     crossAxisSpacing: 12,
-                    childAspectRatio: 0.66,
+                    childAspectRatio: 0.50,
                   ),
                   delegate: SliverChildBuilderDelegate(
                     (_, __) => const SkeletonProductCard(),
@@ -634,7 +634,7 @@ class _ProductListPageState extends State<ProductListPage> {
                     crossAxisCount: crossAxisCount,
                     mainAxisSpacing: 12,
                     crossAxisSpacing: 12,
-                    childAspectRatio: 0.66,
+                    childAspectRatio: 0.58,
                   ),
                   delegate: SliverChildBuilderDelegate((context, index) {
                     final p = c.items[index];

@@ -27,6 +27,20 @@ class _CartPageState extends State<CartPage> {
     });
   }
 
+  @override
+  void initState() {
+    super.initState();
+    // Auto select all items on init
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final cart = context.read<CartController>();
+      final allIds = cart.items.map((e) => e.product.id).toList();
+      setState(() {
+        _selectedItemIds.addAll(allIds);
+      });
+    });
+  }
+
   void _onToggleAll(bool checked, List<int> allIds) {
     setState(() {
       if (checked) {
@@ -538,36 +552,40 @@ class _CartPageState extends State<CartPage> {
                   ),
                 ),
               ),
-              const Spacer(),
-              // Total Price
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Row(
-                    children: [
-                      const Text(
-                        'Tổng thanh toán',
-                        style: TextStyle(fontSize: 14, color: Colors.black87),
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        '$totalPriceđ',
-                        style: const TextStyle(
-                          color: Color(0xFF00B14F),
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        const Text(
+                          'Tổng:',
+                          style: TextStyle(fontSize: 14, color: Colors.black87),
                         ),
-                      ),
-                    ],
-                  ),
-                  const Text(
-                    'Tiết kiệm 120k', // Dummy
-                    style: TextStyle(fontSize: 10, color: Color(0xFF00B14F)),
-                  ),
-                ],
+                        const SizedBox(width: 4),
+                        Flexible(
+                          child: Text(
+                            '$totalPriceđ',
+                            style: const TextStyle(
+                              color: Color(0xFF00B14F),
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Text(
+                      'Tiết kiệm 120k', // Dummy
+                      style: TextStyle(fontSize: 10, color: Color(0xFF00B14F)),
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(width: 12),
+              const SizedBox(width: 8),
               // Button Buy
               InkWell(
                 onTap: () {
@@ -595,7 +613,9 @@ class _CartPageState extends State<CartPage> {
                 },
                 child: Container(
                   color: const Color(0xFF00B14F),
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                  ), // Reduced padding
                   alignment: Alignment.center,
                   height: double.infinity,
                   child: Text(
@@ -603,7 +623,7 @@ class _CartPageState extends State<CartPage> {
                     style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      fontSize: 15,
+                      fontSize: 14, // Slightly smaller font
                     ),
                   ),
                 ),

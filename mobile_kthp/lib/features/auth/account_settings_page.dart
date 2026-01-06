@@ -5,6 +5,7 @@ import 'controllers/auth_controller.dart';
 import '../products/pages/product_list_page.dart';
 import 'user_info_page.dart';
 import '../address/pages/address_list_page.dart';
+import '../chat/pages/chat_list_page.dart';
 
 class AccountSettingsPage extends StatelessWidget {
   const AccountSettingsPage({super.key});
@@ -33,7 +34,12 @@ class AccountSettingsPage extends StatelessWidget {
                   Icons.chat_bubble_outline,
                   color: Color(0xFF00B14F),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const ChatListPage()),
+                  );
+                },
               ),
             ],
           ),

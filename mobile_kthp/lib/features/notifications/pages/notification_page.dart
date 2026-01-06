@@ -109,7 +109,7 @@ class _NotificationPageState extends State<NotificationPage> {
           const SizedBox(width: 8),
           _buildIconBadge(
             icon: Icons.chat_bubble_outline,
-            badge: 3, // Mock badge
+            badge: 0, // Mock badge
             onTap: () {
               Navigator.push(
                 context,
